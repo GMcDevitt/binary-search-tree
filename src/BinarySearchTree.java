@@ -59,7 +59,9 @@ public class BinarySearchTree {
 
                         //Update size and height
                         size++;
-                        height++;
+                        if (findDepth(newNode.getValue()) > height) {
+                            height = findDepth(newNode.getValue());
+                        }
 
                         return; // All Done
                     }
@@ -76,7 +78,10 @@ public class BinarySearchTree {
 
                         //Update size and height
                         size++;
-                        height++;
+                        if (findDepth(newNode.getValue()) > height) {
+                            height = findDepth(newNode.getValue());
+                        }
+
 
                         return; // All Done
                     }
@@ -212,7 +217,6 @@ public class BinarySearchTree {
             // If root delete it
             if (focusNode == root) {
                 root = null;
-                size--;
             }
 
             // If it was marked as a left child
@@ -225,8 +229,6 @@ public class BinarySearchTree {
             // Vice versa for the right child
             else
                 parent.setRightChild(null);
-            size--;
-
         }
 
         // If no right child
@@ -268,8 +270,6 @@ public class BinarySearchTree {
             else {
                 parent.setRightChild(focusNode.getRightChild());
             }
-
-            height--;
         }
 
         // Two children so I need to find the deleted nodes
@@ -296,9 +296,9 @@ public class BinarySearchTree {
             }
 
             replacement.setLeftChild(focusNode.getLeftChild());
-
-            height--;
         }
+        size--;
+        updateHeight(this.root);
         return true;
     }
 
@@ -404,6 +404,27 @@ public class BinarySearchTree {
         return depth;
     }
 
+    private int updateHeight(Node focusNode) {
+
+        int height = 0;
+
+        if (focusNode != null) {
+
+            // Traverse the left node
+            updateHeight(focusNode.getLeftChild());
+
+            // Visit the currently focused on node
+            if(findDepth(focusNode.getValue()) > height) {
+                height = findDepth(focusNode.getValue());
+            }
+
+            // Traverse the right node
+            updateHeight(focusNode.getRightChild());
+        }
+        return height;
+
+    }
+
     public Node getRoot() {
         return root;
     }
@@ -415,4 +436,6 @@ public class BinarySearchTree {
     public int getHeight() {
         return height;
     }
+
+
 }
