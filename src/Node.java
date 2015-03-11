@@ -7,14 +7,16 @@ public class Node {
 
     //The value of the node
     private int value;
-
     //Left child of the node
     private Node leftChild;
     //Right child of the node
     private Node rightChild;
 
-    //Create a node with a value
-    Node(int value) {
+    /**
+     * Create a node with an int value
+     * @param value
+     */
+    public Node(int value) {
         this.value = value;
     }
 

@@ -4,14 +4,12 @@
 public class Main {
 
     public static void main(String[] args) {
-
         //Array used for numbers 1-100
         int[] ascendingArray = new int[100];
         //Array used for numbers 100-1
         int[] descendingArray = new int[100];
         //Array used for random integers
         int[] randomArray = new int[100];
-
         //Array that will be used multiple times with 1000 random integers
         int[] randomArray_1000 = new int[1000];
 
@@ -19,12 +17,10 @@ public class Main {
         for (int i = 0; i < 100; i++) {
             ascendingArray[i] = i + 1;
         }
-
         //Load with 100-10
         for (int i = 99; i >= 0 - i; i--) {
             descendingArray[i] = i + 1;
         }
-
         //Load with 100 random integers
         for (int i = 0; i < 100; i++) {
             randomArray[i] = (int) (Math.random() * 100) + 1;
@@ -58,15 +54,12 @@ public class Main {
 
         //Load the tree 100 times
         for (int i = 0; i < 100; i++) {
-
             //Load the array with 1000 different items
             for (int j = 0; j < 1000; j++) {
                 randomArray_1000[j] = (int) (Math.random() * 100) + 1;
             }
-
             //Initialize the tree
             randomTree = new BinarySearchTree(randomArray_1000);
-
             //If there is a new minimum height
             if (randomTree.getHeight() < minHeight) {
                  minHeight = randomTree.getHeight();
@@ -87,5 +80,4 @@ public class Main {
 
         //End
     }
-
 }
